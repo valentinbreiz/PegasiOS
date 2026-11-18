@@ -1,0 +1,21 @@
+<Project>
+
+  <!--
+    One place for the Cosmos version: global.json pins Cosmos.Sdk, and the
+    package references read the same number from it, so `cosmos update` or a
+    manual bump moves everything at once.
+    The property is not named CosmosPackageVersion: Cosmos.Sdk's own props use
+    that name.
+  -->
+  <PropertyGroup>
+    <_PegasiGlobalJson>$(MSBuildThisFileDirectory)global.json</_PegasiGlobalJson>
+    <PegasiCosmosVersion Condition="'$(PegasiCosmosVersion)' == ''">$([System.Text.RegularExpressions.Regex]::Match($([System.IO.File]::ReadAllText('$(_PegasiGlobalJson)')), '&quot;Cosmos\.Sdk&quot;\s*:\s*&quot;([^&quot;]+)&quot;').Groups[1].Value)</PegasiCosmosVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+  </PropertyGroup>
+
+</Project>
