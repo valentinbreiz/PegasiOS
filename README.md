@@ -12,7 +12,7 @@ PegasiOS is at its first steps: a kernel that boots in a virtual machine shaped 
 - The kernel builds for ARM64 against Cosmos 3.0.97 from nuget.org.
 - It boots in QEMU on a machine with the phone's CPU model, memory, panel size and storage size.
 - It runs a shell on the 720x1440 panel: a status bar, a navigation bar with Back and Home, and three screens. Home has the clock and a tile per screen, About lists the hardware the kernel found, Controls has a switch, a slider and a button that work.
-- The shell's controls are built on [Aura.UI](src/Aura.UI/README.md), the UI kit of Aura Operating System, which this repository carries as a library other Cosmos kernels can reference.
+- The shell's controls are built on Aura.UI, the UI kit of Aura Operating System: a library with a repository of its own, which other Cosmos kernels can reference too.
 - The mouse stands in for the finger: the pointer is where the finger is, a click is a tap. Escape is Back.
 
 [docs/pinephone.md](docs/pinephone.md) has the phone's specifications, what the virtual machine reproduces of them, and what the real device still needs.
@@ -21,6 +21,7 @@ PegasiOS is at its first steps: a kernel that boots in a virtual machine shaped 
 
 - The [.NET 10 SDK](https://dotnet.microsoft.com/download).
 - The Cosmos tools (clang, lld, xorriso, QEMU with the ARM64 firmware): `dotnet tool install -g Cosmos.Tools`, then `cosmos install`.
+- The Aura.UI repository cloned next to this one, as `../Aura.UI`: the kernel builds the UI kit from that clone. A build without it stops with a message that says so.
 
 ## Build and run
 
@@ -47,13 +48,12 @@ The shell writes what it does on the serial line (`[PegasiOS] screen Controls`, 
 | Path | What it holds |
 |---|---|
 | `src/PegasiOS/` | the kernel: `Kernel.cs`, the shell under `Shell/`, its touch controls under `Shell/Controls/` |
-| `src/Aura.UI/` | the UI kit, a library with its own [README](src/Aura.UI/README.md) |
 | `scripts/` | build, the PinePhone virtual machine, the screen driver |
 | `docs/pinephone.md` | the device and its virtual machine |
 | `global.json` | the Cosmos version everything builds against |
 
 ## License
 
-BSD 3-Clause, see [LICENSE](LICENSE). `src/Aura.UI` carries its own notices: see its README.
+BSD 3-Clause, see [LICENSE](LICENSE).
 
 The banner is a crop of an [ESO image](https://www.eso.org/public/images/eso1517c/), credit ESO/Digitized Sky Survey 2, under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

@@ -14,9 +14,19 @@
     <PackageReference Include="Cosmos.Kernel.System" Version="$(PegasiCosmosVersion)" />
   </ItemGroup>
 
-  <!-- The UI kit the shell and its controls are built on. -->
+  <!-- The UI kit the shell and its controls are built on: Aura.UI, which has a
+       repository of its own. It is built from a clone of that repository next
+       to this one. It is not published as a package, and the Aura.UI on
+       nuget.org is another library, so nothing is restored in its place.
+       A clone somewhere else: -p:AuraUIProject=<path to Aura.UI.csproj>. -->
+  <PropertyGroup>
+    <AuraUIProject Condition="'$(AuraUIProject)' == ''">$(MSBuildThisFileDirectory)../../../Aura.UI/src/Aura.UI/Aura.UI.csproj</AuraUIProject>
+  </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aura.UI\Aura.UI.csproj" />
+    <ProjectReference Include="$(AuraUIProject)" />
   </ItemGroup>
+  <Target Name="CheckAuraUIClone" BeforeTargets="Restore;CollectPackageReferences;BeforeBuild" Condition="!Exists('$(AuraUIProject)')">
+    <Error Text="Aura.UI was not found at $(AuraUIProject). Clone the Aura.UI repository next to PegasiOS, or pass -p:AuraUIProject=&lt;path to Aura.UI.csproj&gt;." />
+  </Target>
 
 </Project>
