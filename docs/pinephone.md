@@ -73,17 +73,17 @@ What a driver has to talk to, from the Components page of the documentation.
 | U-Boot, device tree | EDK2 UEFI firmware, Limine, ACPI |
 | modem, Wi-Fi, Bluetooth, cameras, sensors, battery | absent |
 
-What a boot of the demo kernel reports on this VM (Cosmos 3.0.97):
+What the About screen reports on this VM (Cosmos 3.0.97):
 
 - Display: `720x1440 virtio-gpu`.
-- CPU: one core online. Cosmos starts a single CPU on ARM64 in this release, the three others stay parked.
-- Memory: 2837 MB. The kernel's heap takes the largest free region of the 3072 MB.
+- CPU: one core online. Cosmos 3.0.97 counts a single CPU on ARM64 (`ARM64PlatformInitializer.GetCpuCount` returns 1), so the three others are never started.
+- Memory: 2836 MB. Cosmos's page allocator takes the largest usable region of the memory map, not all of the 3072 MB.
 - Storage: `vblk0`, 32 GB.
-- Touch: `virtio-mouse`. Cosmos's pointer manager does not apply absolute positions yet, so a tablet or a touch device would not move the pointer: the VM uses a relative mouse.
+- Touch: `virtio-mouse`. Cosmos's pointer manager takes the buttons of an absolute device and not its position (`MouseManager.HandleAbsolute`), so a tablet or a touch device would not move the pointer: the VM uses a relative mouse.
 
 ## What the real phone needs
 
-None of this is started. The VM proves the kernel, the screen layout and the UI, not the hardware. Booting on a PinePhone needs at least:
+None of this is started. The VM proves the kernel, the shell and its controls, not the hardware. Booting on a PinePhone needs at least:
 
 - a boot path: the phone starts U-Boot and hands over a device tree, where the VM gives UEFI and ACPI;
 - a serial driver for the A64 UART, which is not the PL011 of the VM;

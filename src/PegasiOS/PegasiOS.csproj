@@ -14,4 +14,9 @@
     <PackageReference Include="Cosmos.Kernel.System" Version="$(PegasiCosmosVersion)" />
   </ItemGroup>
 
+  <!-- The UI kit the shell and its controls are built on. -->
+  <ItemGroup>
+    <ProjectReference Include="..\Aura.UI\Aura.UI.csproj" />
+  </ItemGroup>
+
 </Project>
