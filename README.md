@@ -1,3 +1,6 @@
+![The sky around the star 51 Pegasi](docs/images/51-pegasi.jpg)<br>
+<sub>The sky around the star 51 Pegasi. Credit: [ESO/Digitized Sky Survey 2](https://www.eso.org/public/images/eso1517c/)</sub>
+
 # PegasiOS
 
 A phone operating system written in C# on [Cosmos](https://github.com/CosmosOS/Cosmos) gen3. The first target is the [PinePhone Beta Edition with Convergence Package](docs/pinephone.md).
@@ -52,3 +55,5 @@ The shell writes what it does on the serial line (`[PegasiOS] screen Controls`, 
 ## License
 
 BSD 3-Clause, see [LICENSE](LICENSE). `src/Aura.UI` carries its own notices: see its README.
+
+The banner is a crop of an [ESO image](https://www.eso.org/public/images/eso1517c/), credit ESO/Digitized Sky Survey 2, under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
