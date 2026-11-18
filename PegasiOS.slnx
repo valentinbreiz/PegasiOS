@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/Aura.UI/Aura.UI.csproj" />
     <Project Path="src/PegasiOS/PegasiOS.csproj" />
   </Folder>
 </Solution>

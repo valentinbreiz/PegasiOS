@@ -222,3 +222,20 @@ end_of_line = crlf
 [src/**.cs]
 dotnet_style_namespace_match_folder = true
 dotnet_diagnostic.IDE0130.severity = error
+
+# Aura.UI is the GUI code of Aura Operating System. It keeps Aura's API (public
+# fields, its names) and Aura's style, so a change made on one side can be
+# carried to the other: the rules Aura's code does not follow are suggestions
+# there.
+[src/Aura.UI/**.cs]
+dotnet_diagnostic.CA1051.severity = none
+dotnet_diagnostic.CA2211.severity = none
+csharp_prefer_braces = true:suggestion
+dotnet_style_null_propagation = true:suggestion
+dotnet_style_coalesce_expression = true:suggestion
+csharp_style_conditional_delegate_call = true:suggestion
+csharp_style_pattern_matching_over_as_with_null_check = true:suggestion
+csharp_style_throw_expression = true:suggestion
+dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.static_fields_should_have_prefix.severity = suggestion
+dotnet_naming_rule.camel_case_for_private_internal_fields.severity = suggestion
