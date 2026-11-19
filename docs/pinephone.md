@@ -77,7 +77,7 @@ What the About screen reports on this VM (Cosmos 3.0.97):
 
 - Display: `720x1440 virtio-gpu`.
 - CPU: one core online. Cosmos 3.0.97 counts a single CPU on ARM64 (`ARM64PlatformInitializer.GetCpuCount` returns 1), so the three others are never started.
-- Memory: 2836 MB. Cosmos's page allocator takes the largest usable region of the memory map, not all of the 3072 MB.
+- Memory: 2832 MB. Cosmos's page allocator takes the largest usable region of the memory map, not all of the 3072 MB.
 - Storage: `vblk0`, 32 GB.
 - Touch: `virtio-mouse`. Cosmos's pointer manager takes the buttons of an absolute device and not its position (`MouseManager.HandleAbsolute`), so a tablet or a touch device would not move the pointer: the VM uses a relative mouse.
 

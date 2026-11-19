@@ -8,7 +8,10 @@ using PegasiOS.Shell.Controls;
 
 namespace PegasiOS.Shell.Screens;
 
-/// <summary>The first screen: the clock, the date and a tile for each screen that can be opened.</summary>
+/// <summary>
+/// The first screen: the clock, the date and a tile for each screen that can be opened, over the
+/// wallpaper.
+/// </summary>
 internal sealed class HomeScreen : Screen
 {
     private const int ClockScale = 4;
@@ -23,12 +26,15 @@ internal sealed class HomeScreen : Screen
         Color.FromArgb(0xFF, 0xD9, 0x7A, 0x2B)
     ];
 
+    private readonly Wallpaper? _wallpaper;
     private readonly ScaledLabel _clock;
     private readonly Label _date;
     private int _minute = -1;
 
     public HomeScreen(PhoneShell shell, Screen[] apps) : base(shell, "Home")
     {
+        _wallpaper = Wallpaper.Load(shell.Width, shell.Height);
+
         _clock = new ScaledLabel("00:00", Palette.Text, ClockScale, 0, 0);
         _date = new Label(string.Empty, Palette.DimText, 0, 0);
         Add(_clock, Alignment.Center, ClockTopMargin);
@@ -70,5 +76,11 @@ internal sealed class HomeScreen : Screen
             _date.Text = date;
             Arrange();
         }
+    }
+
+    /// <summary>The part of the wallpaper under the screen, when the kernel could read the picture.</summary>
+    protected override void DrawBackground()
+    {
+        _wallpaper?.DrawUnder(GetBuffer(), AbsoluteX, AbsoluteY);
     }
 }
