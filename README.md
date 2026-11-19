@@ -17,7 +17,7 @@ PegasiOS is at its first steps: a kernel that boots in a virtual machine shaped 
 - The kernel builds for ARM64 against Cosmos 3.0.97 from nuget.org.
 - It boots in QEMU on a machine with the phone's CPU model, memory, panel size and storage size.
 - It runs a shell on the 720x1440 panel: a status bar, a navigation bar with Back and Home, and three screens. Home has the clock and a tile per screen over a wallpaper, About lists the hardware the kernel found, Controls has a switch, a slider and a button that work.
-- The shell's controls are built on Aura.UI, the UI kit of Aura Operating System: a library with a repository of its own, which other Cosmos kernels can reference too.
+- The shell's controls are built on [Aura.UI](https://github.com/aura-systems/Aura.UI), the UI kit of Aura Operating System: a library with a repository of its own, which other Cosmos kernels can reference too.
 - The mouse stands in for the finger: the pointer is where the finger is, a click is a tap. Escape is Back.
 
 [docs/pinephone.md](docs/pinephone.md) has the phone's specifications, what the virtual machine reproduces of them, and what the real device still needs.
