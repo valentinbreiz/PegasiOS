@@ -7,6 +7,11 @@ A phone operating system written in C# on [Cosmos](https://github.com/CosmosOS/C
 
 PegasiOS is at its first steps: a kernel that boots in a virtual machine shaped like the phone and runs a small touch shell. It does not run on a real PinePhone yet.
 
+<p align="center">
+  <img src="docs/images/pegasios-in-qemu.png" alt="PegasiOS in the PinePhone virtual machine" width="640"><br>
+  <sub>PegasiOS in the PinePhone virtual machine: the home screen on the phone's panel, and the boot log on the firmware's framebuffer.</sub>
+</p>
+
 ## What works
 
 - The kernel builds for ARM64 against Cosmos 3.0.97 from nuget.org.
@@ -33,7 +38,7 @@ make shot     # build, boot without a window, save the screen to out/home.png
 
 The first build installs the Cosmos IL patcher of the pinned version under `.tools/`, so the global tools of the machine are not touched.
 
-In the QEMU window, click the screen to give it the mouse, and press Ctrl+Alt+G to take it back. The kernel log is on the terminal.
+QEMU opens two windows: the tall one is the phone's panel, the other is the firmware's framebuffer, where the boot log is drawn. Click the panel to give it the mouse, and press Ctrl+Alt+G to take it back. The kernel log is on the terminal.
 
 `scripts/vm-drive.py` boots the kernel without a window and plays steps on it (move the finger, tap, type a key, take a screenshot). It is how a change to the shell is checked. The finger starts at the center of the panel and `move` is relative, so this opens the Controls tile and saves what it shows:
 
